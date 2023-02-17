@@ -1,9 +1,9 @@
-import React, {  useState ,useEffect} from "react";
+import React from "react";
 import './main.css'
 import Logout from "../loginpage/logout";
 import 'firebase/compat/auth';
 import { db } from "../firebase";
-import { set,get,update,remove,child,ref as dref } from "firebase/database";
+import { get,update,child,ref as dref } from "firebase/database";
 import StartFirebase from "../firebase1";
 
 
@@ -74,7 +74,7 @@ selectData(e){
           console.log(doc.val())
         data.push(doc.val());
       });
-      this.state.data=data;
+     // this.state.data=data;
       //this.setState({ data: data });
     })
   
