@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './main.css'
 import Logout from "../loginpage/logout";
 import 'firebase/compat/auth';
