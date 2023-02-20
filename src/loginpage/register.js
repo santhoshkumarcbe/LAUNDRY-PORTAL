@@ -29,8 +29,7 @@ function Register(){
           .catch((error) => {
             const errorCode = error.code;
             alert(errorCode);
-           // const errorMessage = error.message;
-            // ..
+           
           });
         }  
 
@@ -54,7 +53,6 @@ function Register(){
                 <label for='name'></label>
                 <h3 id="login">Name:</h3><input class="form-control" type='text' id='name' onChange={e=>setName(e.target.value)} placeholder='Enter your Name' autoFocus required></input>
                 </div>
-      
                 <label for='email'></label>
                 <h3 id="login">Email:</h3><input class="form-control" type='email' id="email"   onChange={e=>setEmail(e.target.value)} placeholder='Enter your E-mail id'  required></input>
                 </div>
@@ -68,7 +66,6 @@ function Register(){
        onClick={()=>{createDoc({name,email,balance})
        document.getElementById("email").value="";
        document.getElementById("name").value="";
-      //  document.getElementById("wallet").value="0";
        document.getElementsByName(balance).value="";
        signUp()
     }} ></input>

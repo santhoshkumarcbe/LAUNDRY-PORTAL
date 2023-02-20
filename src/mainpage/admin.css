@@ -60,7 +60,7 @@ h3#wash{
     
   }
 
-  button{
+  button.admin{
     margin: 10%;
     transform: translateX(0%);
     width: 120px;

@@ -76,7 +76,7 @@ getAllInputs(){
 }
 
 insertData(){
-
+//add data 
     const rdb=StartFirebase();
     const data=this.getAllInputs();
     console.log(data);
@@ -86,9 +86,24 @@ insertData(){
         start:0
 
     })
-    .then(()=>{alert("data added successfully")})
+  //  .then(()=>{alert("data added successfully")})
     .catch((error)=>{alert("there was an error ,details:"+error)});
     console.log("success");
+
+
+// Update data in table
+    const dbref =dref(StartFirebase());
+    get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+        const data = [];
+        querySnapshot.forEach((doc) => {
+            console.log(doc.val())
+          data.push(doc.val());
+        });
+        this.setState({ data: data });
+      //  alert("table updated")
+      })
+  
+    .catch((error)=>{alert("there was an error, details: "+error)})
 
 }
 
@@ -117,58 +132,6 @@ deleteData(){
     console.log("success");
 
 }
-
-fetchData(){
-    
-    const dbref =dref(StartFirebase());
-    const wash=this.getAllInputs().wash;
-   
-    get(child(dbref,"Washing Machines/" + wash)).then((snapshot)=>{
-        if(snapshot.exists()){
-            this.setState({
-                wid:snapshot.val().wid,
-                wash:snapshot.val().wash
-            })
-           alert("Data fetch successfull")
-        }
-
-        else{
-            alert("no data found");
-        }
-    })
-    .catch((error)=>{alert("there was an error, details: "+error)})
-
-}
-
-selectData(){
-    const dbref =dref(StartFirebase());
-    
-   
-    get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
-        const data = [];
-        querySnapshot.forEach((doc) => {
-            console.log(doc.val())
-          data.push(doc.val());
-        });
-        this.setState({ data: data });
-      //  alert("table updated")
-      })
-    //.then((snapshot)=>{
-       
-    //     let dd=[snapshot.val()];
-    //     console.log(dd)
-    //         this.setState({
-    //             data:snapshot.val(),  
-    //         })
-            
-    // })
-    .catch((error)=>{alert("there was an error, details: "+error)})
-}
- 
-
-   
-
-
 
 
 interface(event){
@@ -237,11 +200,11 @@ return(
      <h3>   Wash id : <input type='text' id='wash' value={this.state.wid}
      onChange={e=>{this.setState({wid:e.target.value})}} placeholder=' Wash ID'/></h3>
 
-     <button id="addBtn" value='submit' onClick={this.interface}>Add Wash</button>
+     <button id="addBtn" className="admin" value='submit' onClick={this.interface}>Add Wash</button>
      {/* <button id="updateBtn" value='submit' onClick={this.interface}>update Wash</button> */}
-     <button id="deleteBtn"  value='submit' onClick={this.interface}>Delete Wash</button>
-     <button id="selectBtn"  value='submit' onClick={this.interface}>Refresh</button>
-     <Logout/>
+     <button id="deleteBtn"  className="admin"  value='submit' onClick={this.interface}>Delete Wash</button>
+     {/* <button id="selectBtn"  value='submit' onClick={this.interface}>Refresh</button> */}
+     <Logout className="admin"/>
      
      </form>
 <br></br>

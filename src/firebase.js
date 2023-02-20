@@ -6,13 +6,13 @@ import firebase from 'firebase/compat/app';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDNxOWWLBazvuJ12vFgQYsAMjjK7gZq6rs",
-  authDomain: "autowash-c4fcb.firebaseapp.com",
-  databaseURL: "https://autowash-c4fcb-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "autowash-c4fcb",
-  storageBucket: "autowash-c4fcb.appspot.com",
-  messagingSenderId: "4187779544",
-  appId: "1:4187779544:web:ba688f0bf48bfe708742ad"
+  apiKey: "AIzaSyC_nSrv3jbJziOEG_-KjS8ZA7-ZUfsTN0g",
+  authDomain: "autowash-a308b.firebaseapp.com",
+  databaseURL: "https://autowash-a308b-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "autowash-a308b",
+  storageBucket: "autowash-a308b.appspot.com",
+  messagingSenderId: "795057888819",
+  appId: "1:795057888819:web:559510b59638ed75074d46"
 };
 const app = firebase.initializeApp(firebaseConfig);
 

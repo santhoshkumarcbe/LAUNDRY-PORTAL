@@ -23,24 +23,24 @@ class Main extends React.Component {
     }
   }
 
-     OnWashing(e)
-    {
-      e.preventDefault();
-    const rdb=StartFirebase();
+  //    OnWashing(e)
+  //   {
+  //     e.preventDefault();
+  //   const rdb=StartFirebase();
     
-   // const update=this.state.start;
+  //  // const update=this.state.start;
        
-       update(dref(rdb,"Washing Machines/" + this.wash),{
+  //      update(dref(rdb,"Washing Machines/" + this.wash),{
         
-       //  start:update.start,
-         start:1
+  //      //  start:update.start,
+  //        start:1
         
-    })
+  //   })
 
-      .then(()=>{alert("washing machine is turned ON")})
-      .catch((error)=>{alert("there was an error ,details:"+error)});
-      console.log("washing machine turned on successfully");
-    }
+  //     .then(()=>{alert("washing machine is turned ON")})
+  //     .catch((error)=>{alert("there was an error ,details:"+error)});
+  //     console.log("washing machine turned on successfully");
+  //   }
 
     topup(e)
     {
@@ -79,6 +79,20 @@ selectData(e){
     })
   
   .catch((error)=>{alert("there was an error, details: "+error)})
+}
+OnWashing(e){
+  e.preventDefault();
+  const rdb=StartFirebase();
+  const data=this.getAllInputs();
+  console.log(data);
+  update(dref(rdb,"Washing Machines/start" ),{
+       start:1
+  })
+
+  .then(()=>{alert(" Turned ON")})
+  .catch((error)=>{alert("there was an error ,details:"+error)});
+  console.log("success");
+
 }
 
 
