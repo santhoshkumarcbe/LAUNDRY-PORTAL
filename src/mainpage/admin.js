@@ -227,7 +227,7 @@ return(
      
      </form>
 
-     {/* <div class="laundry-background"> */}
+  
   <div class="bubble bubble1"></div>
   <div class="bubble bubble2"></div>
   <div class="bubble bubble3"></div>
@@ -238,7 +238,7 @@ return(
   <div class="bubble bubble8"></div>
   <div class="bubble bubble9"></div>
   <div class="bubble bubble10"></div>
-{/* </div> */}
+
 
 <br></br>
 <br></br>

@@ -61,7 +61,7 @@ OnWashing(e){
 
   .then(()=>{alert(" Turned ON")})
   .catch((error)=>{alert("there was an error ,details:"+error)});
-  console.log("success");
+   console.log("washing started");
 
 }
 
@@ -125,11 +125,12 @@ get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
   get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc) => {
-          console.log(doc.val())
+       //   console.log(doc.val())
         data.push(doc.val());
       });
       this.setState({ data: data });
     //  alert("table updated")
+  
     })
 
   .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
@@ -147,17 +148,17 @@ componentWillUnmount() {
 
 render(){
     return(
-        <div class='main'>    
+        <div className="admin">    
           {/* <button onclick={topFunction()} id="myBtn" title="Go to top">Top</button> */}
-          <div class="main">
-            <form class="main">
-            <div class="main">  
+          
+            <form class="admin">
+             
             <br></br>      
            <h1 id="main">Welcome <span id="name"></span> </h1>  <br></br> 
 <h2 id='main'> Wallet balance  <span id="balance"></span></h2>
 <br></br>
 
-<table id='main'>
+<table className="animated-table">
     {/* <thead> */}
     <tr>
     <th>WASHING MACHINE</th>
@@ -191,12 +192,38 @@ render(){
   <Logout/>
 
   {/* <button class='button' onClick={this.OnWashing}>Wash now</button> */}
-  </div>
+  
   
   </form>
 
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+  <div class="bubble bubble4"></div>
+  <div class="bubble bubble5"></div>
+  <div class="bubble bubble6"></div>
+  <div class="bubble bubble7"></div>
+  <div class="bubble bubble8"></div>
+  <div class="bubble bubble9"></div>
+  <div class="bubble bubble10"></div>
+
+  <br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
  
-</div>
+
 </div>
     )
 }
