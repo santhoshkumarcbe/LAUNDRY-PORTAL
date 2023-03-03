@@ -184,14 +184,13 @@ render(){
 
 </table >
 <br></br>
-  <button class="dropdown" onClick={this.topup}>Top-up
+  <button className="admin" onClick={this.topup}>Top-up
   <p class="dropdown-content">Load your wallet here</p>
   </button>
-  <button class='button' onClick={this.selectData}>Refresh</button>
   
-  <Logout/>
+  <Logout  />
 
-  {/* <button class='button' onClick={this.OnWashing}>Wash now</button> */}
+ 
   
   
   </form>
