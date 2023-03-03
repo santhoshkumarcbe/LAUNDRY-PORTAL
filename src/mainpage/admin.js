@@ -226,6 +226,20 @@ return(
      <Logout className="admin"/>
      
      </form>
+
+     {/* <div class="laundry-background"> */}
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+  <div class="bubble bubble4"></div>
+  <div class="bubble bubble5"></div>
+  <div class="bubble bubble6"></div>
+  <div class="bubble bubble7"></div>
+  <div class="bubble bubble8"></div>
+  <div class="bubble bubble9"></div>
+  <div class="bubble bubble10"></div>
+{/* </div> */}
+
 <br></br>
 <br></br>
 <br></br>
