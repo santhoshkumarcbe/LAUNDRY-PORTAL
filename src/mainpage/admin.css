@@ -212,4 +212,56 @@ h3#wash{
     }
   }
   
+/* animated table css  */
+
+.animated-table {
+  border-collapse: collapse;
+}
+
+.animated-table th,
+.animated-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.animated-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.animated-table tr:hover {
+  background-color: #ddd;
+}
+
+.animated-table td {
+  transition: all 0.3s ease-in-out;
+}
+
+.animated-table td:hover {
+  background-color: #f8f8f8;
+  transform: translateX(10px);
+}
+
+
+
+/* table border */
+
+.border-table {
+  border-collapse: collapse;
+}
+
+.border-table th,
+.border-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 2px solid #ddd;
+}
+
+.border-table th {
+  background-color: #f2f2f2;
+}
+
+.border-table tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
 

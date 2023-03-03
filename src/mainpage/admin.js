@@ -186,7 +186,7 @@ return(
      <br></br>
 
 
-     <table className="admin">
+     <table className="animated-table">
     <thead>
     <th>WASHNAME</th>
     
@@ -203,7 +203,7 @@ return(
     </tbody>
           ))}
 
-</table>
+</table >
 
 <br></br>
 <br></br>
