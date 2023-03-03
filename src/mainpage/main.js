@@ -23,24 +23,7 @@ class Main extends React.Component {
     }
   }
 
-  //    OnWashing(e)
-  //   {
-  //     e.preventDefault();
-  //   const rdb=StartFirebase();
-    
-  //  // const update=this.state.start;
-       
-  //      update(dref(rdb,"Washing Machines/" + this.wash),{
-        
-  //      //  start:update.start,
-  //        start:1
-        
-  //   })
 
-  //     .then(()=>{alert("washing machine is turned ON")})
-  //     .catch((error)=>{alert("there was an error ,details:"+error)});
-  //     console.log("washing machine turned on successfully");
-  //   }
 
     topup(e)
     {
@@ -48,44 +31,31 @@ class Main extends React.Component {
       alert("Payment options are added soon")
     }
 
-
-// Get the button
-// let mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-// window.onscroll = function() {scrollFunction()};
-
-// function scrollFunction() {
-//   if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
-//     mybutton.style.display = "block";
-//   } else {
-//     mybutton.style.display = "none";
-//   }
-// }
-
 selectData(e){
   e.preventDefault();
-  const dbref =dref(StartFirebase());
   
- 
-  get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
-      const data = [];
-      querySnapshot.forEach((doc) => {
-          console.log(doc.val())
-        data.push(doc.val());
-      });
-     // this.state.data=data;
-      //this.setState({ data: data });
-    })
+     const dbref =dref(StartFirebase());
+    get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+        const data = [];
+        querySnapshot.forEach((doc) => {
+            console.log(doc.val())
+          data.push(doc.val());
+        });
+        this.setState({ data: data });
+      //  alert("table updated")
+      })
   
-  .catch((error)=>{alert("there was an error, details: "+error)})
+    .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
 }
+
+
+
 OnWashing(e){
   e.preventDefault();
   const rdb=StartFirebase();
-  const data=this.getAllInputs();
-  console.log(data);
-  update(dref(rdb,"Washing Machines/start" ),{
+  // const data=this.getAllInputs();
+ // console.log(data);
+  update(dref(rdb,"Washing Machines/wash 1" ),{
        start:1
   })
 
@@ -132,7 +102,47 @@ get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
 .catch((error)=>{alert("there was an error, details: "+error)})
 
 
- }
+
+// get data in table
+// const dbref =dref(StartFirebase());
+get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+    const data = [];
+    querySnapshot.forEach((doc) => {
+        console.log(doc.val())
+      data.push(doc.val());
+    });
+    this.setState({ data: data });
+  //  alert("table updated")
+  })
+
+.catch((error)=>{alert("there was an error in table refresh, details: "+error)})
+ 
+  //     // Update data in table
+  
+        const intervalId = setInterval(() => {
+         // Update data in table
+  const dbref =dref(StartFirebase());
+  get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+          console.log(doc.val())
+        data.push(doc.val());
+      });
+      this.setState({ data: data });
+    //  alert("table updated")
+    })
+
+  .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
+
+        }, 1); 
+    
+        this.setState({ intervalId });
+
+}
+
+componentWillUnmount() {
+        clearInterval(this.state.intervalId);
+      }
 
 
 render(){

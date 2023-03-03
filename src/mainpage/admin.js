@@ -1,8 +1,9 @@
 import React from "react";
-import { set,get,update,remove,child,ref as dref } from "firebase/database";
+import { set,get,remove,child,ref as dref } from "firebase/database";
 import StartFirebase from "../firebase1";
 import './admin.css';
 import Logout from "../loginpage/logout";
+
 
 
 
@@ -16,7 +17,8 @@ import Logout from "../loginpage/logout";
             rdb:'',
             wid:'',
             wash:'',
-            data:[]
+            data:[],
+            udata:[]
            // count:''
         }
         this.interface=this.interface.bind(this);
@@ -27,8 +29,9 @@ import Logout from "../loginpage/logout";
         this.setState({
             rdb:StartFirebase
         })
-        const dbref =dref(StartFirebase());
+        let dbref =dref(StartFirebase());
        
+        // get data in table
         get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
             const data = [];
             querySnapshot.forEach((doc) => {
@@ -38,34 +41,35 @@ import Logout from "../loginpage/logout";
             this.setState({ data: data });
           })
         .catch((error)=>{alert("there was an error, details: "+error)})
+
+
+    //     // Update data in table
+  
+        const intervalId = setInterval(() => {
+         // Update data in table
+  const dbref =dref(StartFirebase());
+  get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+          console.log(doc.val())
+        data.push(doc.val());
+      });
+      this.setState({ data: data });
+    //  alert("table updated")
+    })
+
+  .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
+
+        }, 1); 
+    
+        this.setState({ intervalId });
       }
 
-    //   componentDidMount() {
-    //     const washRef = database.dref('wash');
-    
-    //     washRef.on('value', (snapshot) => {
-    //       const snapshotData = snapshot.val();
-    //       const washArray = [];
-    
-    //       for (let key in snapshotData) {
-    //         washArray.push({ id: key, ...snapshotData[key] });
-    //       }
-    
-    //       this.setState({ wash: washArray });
-    //     });
-    //   }
-    
-    //   componentWillUnmount() {
-    //     const washRef = database.ref('wash');
-    
-    //     washRef.off();
-    //   }
+      componentWillUnmount() {
+        clearInterval(this.state.intervalId);
+      }
 
-addWash() {
- //   const db1=this.state.db1;
-  //  set(ref(db,'Wash/'+Wname),{
-   // })
-}
+
 
 getAllInputs(){
 
@@ -77,6 +81,7 @@ getAllInputs(){
 
 insertData(){
 //add data 
+
     const rdb=StartFirebase();
     const data=this.getAllInputs();
     console.log(data);
@@ -103,33 +108,48 @@ insertData(){
       //  alert("table updated")
       })
   
-    .catch((error)=>{alert("there was an error, details: "+error)})
+    .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
 
 }
 
-updateData(){
-    const rdb=StartFirebase();
-    const data=this.getAllInputs();
-    console.log(data);
-    update(dref(rdb,"Washing Machines/" +  this.wash),{
-        wid:data.wid,
-         start:0
-    })
+// updateData(){
+//   // Update data in table
+//   const dbref =dref(StartFirebase());
+//   get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+//       const data = [];
+//       querySnapshot.forEach((doc) => {
+//           console.log(doc.val())
+//         data.push(doc.val());
+//       });
+//       this.setState({ data: data });
+//     //  alert("table updated")
+//     })
 
-    .then(()=>{alert("data updated successfully")})
-    .catch((error)=>{alert("there was an error ,details:"+error)});
-    console.log("success");
-
-}
+//   .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
+// }
 
 deleteData(){
     const rdb=StartFirebase();
     const wash=this.getAllInputs().wid;
    // console.log(data);
     remove(dref(rdb,"Washing Machines/" + wash))
-    .then(()=>{alert("data deleted successfully")})
+   // .then(()=>{alert("data deleted successfully")})
     .catch((error)=>{alert("there was an error ,details:"+error)});
     console.log("success");
+
+    // Update data in table
+    const dbref =dref(StartFirebase());
+    get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
+        const data = [];
+        querySnapshot.forEach((doc) => {
+            console.log(doc.val())
+          data.push(doc.val());
+        });
+        this.setState({ data: data });
+      //  alert("table updated")
+      })
+  
+    .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
 
 }
 
@@ -151,7 +171,7 @@ interface(event){
     }
 
     else if(id==='selectBtn'){
-        this.selectData();
+        this.updateData();
     }
 
 }
@@ -191,14 +211,13 @@ return(
     <br></br>
     <h2>Update your Washing Machines</h2>
     <br></br>
-   
    {/* <label for='wash'>Wash name:</label> */}
      <h3> Wash name : <input type='text'  id='wash' value={this.state.wash}
      onChange={e=>{this.setState({wash:e.target.value})}} placeholder=' Wash name' required/></h3>
      <br></br>
      {/* <label for='washid'>Wash id :</label> */}
      <h3>   Wash id : <input type='text' id='wash' value={this.state.wid}
-     onChange={e=>{this.setState({wid:e.target.value})}} placeholder=' Wash ID'/></h3>
+     onChange={e=>{this.setState({wid:e.target.value})}} placeholder=' Wash ID' required /></h3>
 
      <button id="addBtn" className="admin" value='submit' onClick={this.interface}>Add Wash</button>
      {/* <button id="updateBtn" value='submit' onClick={this.interface}>update Wash</button> */}
