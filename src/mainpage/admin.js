@@ -219,12 +219,18 @@ return(
     </tbody>
           ))}
 
+          
+
 </table >
+
+
+
 
 <br></br>
 <br></br>
  <form className="admin">
     <br></br>
+    <div class="fish"><img src="https://media.tenor.com/KjpNdPaGhCEAAAAM/goldfish-bloop.gif" /></div>
     <h2>Update your Washing Machines</h2>
     <br></br>
    {/* <label for='wash'>Wash name:</label> */}
@@ -235,6 +241,8 @@ return(
      <h3>   Wash id : <input type='text' id='wash' value={this.state.wid}
      onChange={e=>{this.setState({wid:e.target.value})}} placeholder=' Wash ID' required /></h3>
 
+     
+
      <button id="addBtn" className="admin" value='submit' onClick={this.interface}>Add Wash</button>
      {/* <button id="updateBtn" value='submit' onClick={this.interface}>update Wash</button> */}
      <button id="deleteBtn"  className="admin"  value='submit' onClick={this.interface}>Delete Wash</button>
@@ -242,19 +250,14 @@ return(
      
      
     
-     <button className="admin" onClick={() => toast(' message', {
+     {/* <button className="admin" onClick={() => toast(' message', {
   position: toast.POSITION.TOP_RIGHT,
   autoClose: 1000,
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: false,
   draggable: true,
-})}>Show notification</button>
-
-
-{/* <button onClick={this.showToast}>Show toast</button> */}
-
-
+})}>Show notification</button> */}
 
 
      </form>
@@ -270,7 +273,7 @@ return(
   <div class="bubble bubble8"></div>
   <div class="bubble bubble9"></div>
   <div class="bubble bubble10"></div>
-
+ 
 
 <br></br>
 <br></br>

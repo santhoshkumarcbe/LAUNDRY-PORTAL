@@ -24,7 +24,7 @@ table, td, th {
     width: 70%;
     border-collapse: collapse;
     table-layout: inherit;
-    background: red;
+    background: transparent;
     position: relative;
     animation: mymove 3s;
    
@@ -52,12 +52,17 @@ h3#wash{
     position: relative;
     animation: mymove 1s;
     animation-fill-mode: both;
+    background-image: url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGY1N2VhYjk2NjMwMzY3MGY4NzQzYjAwODEzYmQ0ZDBkYzcyYThhNyZjdD1n/uxbIr5yajuWti/giphy.gif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 
   
   div.admin{
     background-color: rgb(25, 237, 245);
-    
+    background-image: url(https://i.giphy.com/media/HGvjR72DXRHWw/giphy.webp);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 
   button.admin{
@@ -223,6 +228,7 @@ h3#wash{
   padding: 12px 15px;
   text-align: left;
   border-bottom: 2px solid #ddd;
+  background-color: transparent;
 }
 
 .animated-table tr:nth-child(even) {
@@ -264,3 +270,24 @@ h3#wash{
 .border-table tr:nth-child(even) {
   background-color: #f8f8f8;
 }
+
+/* fish swimming animation  */
+
+.fish {
+  width: 50px;
+  height: 30px;
+  background-color: #c5d9e6;
+  position: absolute;
+  border-radius: 50%;
+  animation: swim 3.5s infinite linear;
+}
+
+@keyframes swim {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(00%);
+  }
+}
+
