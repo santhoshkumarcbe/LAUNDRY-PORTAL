@@ -3,6 +3,8 @@ import { set,get,remove,child,ref as dref } from "firebase/database";
 import StartFirebase from "../firebase1";
 import './admin.css';
 import Logout from "../loginpage/logout";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -77,6 +79,19 @@ getAllInputs(){
     wid:this.state.wid,
     wash : this.state.wash
 }
+}
+
+showToast() {
+//  toast('Hello world!');
+  toast('Notification message', {
+    position: toast.POSITION.TOP_RIGHT,
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+  });
+  
 }
 
 insertData(){
@@ -180,6 +195,7 @@ interface(event){
 render(){
 return(
     <div className="admin">
+      
         <br></br>
     <h2>Welcome Admin</h2>
      <br></br>
@@ -223,10 +239,26 @@ return(
      {/* <button id="updateBtn" value='submit' onClick={this.interface}>update Wash</button> */}
      <button id="deleteBtn"  className="admin"  value='submit' onClick={this.interface}>Delete Wash</button>
      {/* <button id="selectBtn"  value='submit' onClick={this.interface}>Refresh</button> */}
-     <Logout className="admin"/>
      
-     </form>
+     
+    
+     <button className="admin" onClick={() => toast(' message', {
+  position: toast.POSITION.TOP_RIGHT,
+  autoClose: 1000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+})}>Show notification</button>
 
+
+{/* <button onClick={this.showToast}>Show toast</button> */}
+
+
+
+
+     </form>
+     <Logout className="admin"/>
   
   <div class="bubble bubble1"></div>
   <div class="bubble bubble2"></div>
@@ -255,6 +287,8 @@ return(
 <br></br>
 <br></br>
 <br></br>
+
+
     </div>
 )
 }

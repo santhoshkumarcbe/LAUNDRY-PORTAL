@@ -7,10 +7,13 @@ import Register from './loginpage/register';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 import Admin from './mainpage/admin';
 import Main from './mainpage/main';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
+       <ToastContainer />
     <Router>
       <UserAuthContextProvider>
       <Routes>

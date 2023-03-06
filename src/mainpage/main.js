@@ -5,6 +5,8 @@ import 'firebase/compat/auth';
 import { db } from "../firebase";
 import { get,update,child,ref as dref } from "firebase/database";
 import StartFirebase from "../firebase1";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -28,7 +30,7 @@ class Main extends React.Component {
     topup(e)
     {
        e.preventDefault();
-      alert("Payment options are added soon")
+      toast("Payment options are added soon")
     }
 
 selectData(e){
@@ -136,9 +138,7 @@ get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
   .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
 
         }, 1); 
-    
         this.setState({ intervalId });
-
 }
 
 componentWillUnmount() {
@@ -205,8 +205,7 @@ render(){
   <div class="bubble bubble8"></div>
   <div class="bubble bubble9"></div>
   <div class="bubble bubble10"></div>
-
-  <br></br>
+ <br></br>
 <br></br>
 <br></br>
 <br></br>
@@ -221,8 +220,6 @@ render(){
 <br></br>
 <br></br>
 <br></br>
- 
-
 </div>
     )
 }
