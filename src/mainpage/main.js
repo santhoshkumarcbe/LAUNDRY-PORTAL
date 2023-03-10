@@ -229,21 +229,7 @@ render(){
   <div class="bubble bubble8"></div>
   <div class="bubble bubble9"></div>
   <div class="bubble bubble10"></div>
- <br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
+
        
 </div>
     )
