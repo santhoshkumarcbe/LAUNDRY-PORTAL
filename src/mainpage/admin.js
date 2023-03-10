@@ -127,21 +127,6 @@ insertData(){
 
 }
 
-// updateData(){
-//   // Update data in table
-//   const dbref =dref(StartFirebase());
-//   get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
-//       const data = [];
-//       querySnapshot.forEach((doc) => {
-//           console.log(doc.val())
-//         data.push(doc.val());
-//       });
-//       this.setState({ data: data });
-//     //  alert("table updated")
-//     })
-
-//   .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
-// }
 
 deleteData(){
     const rdb=StartFirebase();
@@ -195,6 +180,7 @@ interface(event){
 render(){
 return(
     <div className="admin">
+      <form className="admin">
       
         <br></br>
     <h2>Welcome Admin</h2>
@@ -228,9 +214,9 @@ return(
 
 <br></br>
 <br></br>
- <form className="admin">
+ 
     <br></br>
-    <div class="fish"><img src="https://media.tenor.com/KjpNdPaGhCEAAAAM/goldfish-bloop.gif" /></div>
+   
     <h2>Update your Washing Machines</h2>
     <br></br>
    {/* <label for='wash'>Wash name:</label> */}
@@ -259,9 +245,9 @@ return(
   draggable: true,
 })}>Show notification</button> */}
 
-
+<Logout className="admin"/>
      </form>
-     <Logout className="admin"/>
+   
   
   <div class="bubble bubble1"></div>
   <div class="bubble bubble2"></div>
@@ -273,25 +259,6 @@ return(
   <div class="bubble bubble8"></div>
   <div class="bubble bubble9"></div>
   <div class="bubble bubble10"></div>
- 
-
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-
-
     </div>
 )
 }

@@ -5,37 +5,36 @@ import 'firebase/compat/auth';
 import { db } from "../firebase";
 import { get,update,child,ref as dref } from "firebase/database";
 import StartFirebase from "../firebase1";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+ import { toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { doc, setDoc, updateDoc, where } from "firebase/firestore"; 
 
 
 let name1;
 let balance1;
 
 class Main extends React.Component {
-
   constructor(props){
     super(props);
     this.state={
       rdb:'',
       data:[],
       start:0,
-      wash:''
+      wash:'',
+      balance:'0'
     }
   }
 
-
-
     topup(e)
     {
-       e.preventDefault();
+      e.preventDefault();
       toast("Payment options are added soon")
     }
 
-selectData(e){
+selectData(e)
+{
   e.preventDefault();
-  
      const dbref =dref(StartFirebase());
     get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
         const data = [];
@@ -46,10 +45,8 @@ selectData(e){
         this.setState({ data: data });
       //  alert("table updated")
       })
-  
-    .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
+    .catch((error)=>{toast("there was an error in table refresh, details: "+error)})
 }
-
 
 
 OnWashing(e){
@@ -57,14 +54,34 @@ OnWashing(e){
   const rdb=StartFirebase();
   // const data=this.getAllInputs();
  // console.log(data);
+
   update(dref(rdb,"Washing Machines/wash 1" ),{
        start:1
   })
-
-  .then(()=>{alert(" Turned ON")})
-  .catch((error)=>{alert("there was an error ,details:"+error)});
+  
+  .then(()=>{
+    console.log("wash 1 turned ON");
+    //toast("Washing Machine turned ON",1000)
+})
+  .catch((error)=>{toast("there was an error ,details:"+error)});
    console.log("washing started");
 
+   balance1-=40;
+   console.log(balance1);
+  //  const docRef =doc(db,'wallet',where("email","==",window.sharedData.email));
+  //  updateDoc(docRef,balance1)
+  //  .then(docRef=>{
+  //   console.log("balance updated");
+  //  })
+  //  .catch(error=>{
+  //   console.log("balance update error" + error);
+  //  })
+  //  this.db.collection("wallet").update({
+   
+  //     balance:balance1
+    
+    
+  //   })
 }
 
 
@@ -102,9 +119,6 @@ get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
   this.setState({ data: data });
 })
 .catch((error)=>{alert("there was an error, details: "+error)})
-
-
-
 // get data in table
 // const dbref =dref(StartFirebase());
 get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
@@ -120,7 +134,6 @@ get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
 .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
  
   //     // Update data in table
-  
         const intervalId = setInterval(() => {
          // Update data in table
   const dbref =dref(StartFirebase());
@@ -132,25 +145,34 @@ get(child(dbref,"Washing Machines/")).then((querySnapshot) => {
       });
       this.setState({ data: data });
     //  alert("table updated")
-  
     })
-
   .catch((error)=>{alert("there was an error in table refresh, details: "+error)})
-
         }, 1); 
         this.setState({ intervalId });
+        const intervalId1 = setInterval(() => {
+          db.collection("wallet").where("email","==",window.sharedData.email).doc('balance').onSnapshot((doc)=>{
+          const updateBalance=doc.balance();
+          //    balance1=doc.balance()-40;
+             this.setState({
+              balance1:updateBalance
+              // doc.data().balance:balance1 
+             })
+             })
+        },1); 
 }
+
+
 
 componentWillUnmount() {
         clearInterval(this.state.intervalId);
       }
-
+     
 
 render(){
     return(
-        <div className="admin">    
-          {/* <button onclick={topFunction()} id="myBtn" title="Go to top">Top</button> */}
-          
+        <div className="admin">  
+  
+
             <form class="admin">
              
             <br></br>      
@@ -186,14 +208,16 @@ render(){
 <br></br>
   <button className="admin" onClick={this.topup}>Top-up
   <p class="dropdown-content">Load your wallet here</p>
-  </button>
+  </button>/
   
+ 
   <Logout  />
 
  
   
   
   </form>
+ 
 
   <div class="bubble bubble1"></div>
   <div class="bubble bubble2"></div>
@@ -220,6 +244,7 @@ render(){
 <br></br>
 <br></br>
 <br></br>
+       
 </div>
     )
 }
